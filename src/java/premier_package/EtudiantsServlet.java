@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author DELL
  */
-public class ExperimentServlet extends HttpServlet {
+public class EtudiantsServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,26 +35,20 @@ public class ExperimentServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ExperimentServlet</title>");            
+            out.println("<title>Servlet EtudiantsServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Ma première servlet</h1>");
-            out.println("<h2>Informations concernant l'adresse IP et le navigateur utilisé par le client:</h2>");
-            out.println("Adresse IP du client: "+ request.getRemoteAddr()+"<br>");
-            out.println("Navigateur du client: "+request.getHeader("user-agent")+ "<br>");
-            out.println("<h2>Informations concernant la requête du client:</h2>");
-            out.println("Méthode: "+ request.getMethod()+"<br>");
-            out.println("Protocole: "+ request.getProtocol()+"<br>");
-            out.println("Uri demandée: "+ request.getRequestURI()+"<br>");
-            out.println("<h2>Informations concernant l'entête de la requête:</h2>");
-            out.println("host: "+ request.getHeader("host")+"<br>");
-            out.println("user-agent: "+ request.getHeader("user-agent")+"<br>");
-            out.println("accept: "+ request.getHeader("accept")+"<br>");
-            out.println("accept-language: "+ request.getHeader("accept-language")+"<br>");
-            out.println("accept-encoding: "+ request.getHeader("accept-encoding")+"<br>");
-            out.println("accept-charset: "+ request.getHeader("accept-charset")+"<br>");
-            out.println("keep-alive: "+ request.getHeader("keep-alive")+"<br>");
-            out.println("connection: "+ request.getHeader("conection")+"<br>");
+            out.println("<center>");
+            out.println("<h1>Formulaire d'Etudiants</h1>");
+            out.println("<br>");
+            out.println("<Form Method='POST'>");
+            out.println("NOM : <input type='text'> <br><br>");
+            out.println("PRENOM : <input type='text'> <br><br>");
+            out.println("EMAIL : <input type='text'> <br><br>");
+            out.println("<br>");
+            out.println("<input type='submit' value='SAUVEGARDER'>");
+            out.println("</Form>");
+            out.println("</center>");
             out.println("</body>");
             out.println("</html>");
         }
