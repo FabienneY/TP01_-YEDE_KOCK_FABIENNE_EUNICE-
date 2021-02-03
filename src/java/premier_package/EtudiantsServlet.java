@@ -5,6 +5,10 @@
  */
 package premier_package;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,13 +36,36 @@ public class EtudiantsServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            String line ="";
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet EtudiantsServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            
+            out.println("<h1><center>Liste des étudiants enregistrés</center></h1>");
+            out.println("<center>");
+            out.println("<table border='1px'>");
+            out.println("<tr>");
+            out.println("<th>Nom</th>");
+            out.println("<th>Prenom</th>");
+            out.println("<th>Email</th>");
+            out.println("</tr>");
+               try{
+        BufferedReader br = new BufferedReader(new FileReader("etudiants.csv"));
+        while((line = br.readLine()) != null){
+            String[] donne = line.split(",");
+            out.println("<tr>");
+            out.println("<td>"+donne[0]+"</td>");
+            out.println("<td>"+donne[1]+"</td>");
+            out.println("<td>"+donne[2]+"</td>");
+            out.println("</tr>");
+        }
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+            out.println("<table>");
+            out.println("</center>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -70,8 +97,24 @@ public class EtudiantsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        
+        //processRequest(request, response);
+        String nom= request.getParameter("nom");
+     String prenom = request.getParameter("prenom");
+     String email = request.getParameter("email");
+     FileWriter filewritter= new FileWriter("etudiants.csv",true);
+      String Comma_delimiter=",";
+     String new_line_separator="\n";
+     String file_header = "nom,prenom,email";
+     filewritter.append(nom);
+     filewritter.append(Comma_delimiter);
+     filewritter.append(prenom);
+     filewritter.append(Comma_delimiter);
+     filewritter.append(email);
+     filewritter.append(Comma_delimiter);
+     filewritter.append(new_line_separator);
+     filewritter.flush();
+     filewritter.close();
+     doGet(request,response);
     }
 
     /**
