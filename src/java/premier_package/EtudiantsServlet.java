@@ -38,17 +38,7 @@ public class EtudiantsServlet extends HttpServlet {
             out.println("<title>Servlet EtudiantsServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<center>");
-            out.println("<h1>Formulaire d'Etudiants</h1>");
-            out.println("<br>");
-            out.println("<Form Method='POST'>");
-            out.println("NOM : <input type='text'> <br><br>");
-            out.println("PRENOM : <input type='text'> <br><br>");
-            out.println("EMAIL : <input type='text'> <br><br>");
-            out.println("<br>");
-            out.println("<input type='submit' value='SAUVEGARDER'>");
-            out.println("</Form>");
-            out.println("</center>");
+            
             out.println("</body>");
             out.println("</html>");
         }
@@ -81,6 +71,7 @@ public class EtudiantsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
     }
 
     /**
