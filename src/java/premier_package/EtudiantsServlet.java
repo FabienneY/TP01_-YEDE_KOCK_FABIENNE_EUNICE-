@@ -40,16 +40,19 @@ public class EtudiantsServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EtudiantsServlet</title>");            
+            out.println("<title>Servlet EtudiantsServlet</title>");
+            out.println("<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1\" crossorigin=\"anonymous\">\n" +
+"        ");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1><center>Liste des étudiants enregistrés</center></h1>");
             out.println("<center>");
-            out.println("<table border='1px'>");
+            out.println("<br>");
+            out.println("<table class=\"table\">");
             out.println("<tr>");
-            out.println("<th>Nom</th>");
-            out.println("<th>Prenom</th>");
-            out.println("<th>Email</th>");
+            out.println("<th scope=\"col\">Nom</th>");
+            out.println("<th scope=\"col\">Prenom</th>");
+            out.println("<th scope=\"col\">Email</th>");
             out.println("</tr>");
                try{
         BufferedReader br = new BufferedReader(new FileReader("etudiants.csv"));
@@ -98,13 +101,13 @@ public class EtudiantsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        String nom= request.getParameter("nom");
+        String Comma_delimiter=",";
+     String new_line_separator="\n";
+     String file_header = "nom,prenom,email";
+     String nom= request.getParameter("nom");
      String prenom = request.getParameter("prenom");
      String email = request.getParameter("email");
      FileWriter filewritter= new FileWriter("etudiants.csv",true);
-      String Comma_delimiter=",";
-     String new_line_separator="\n";
-     String file_header = "nom,prenom,email";
      filewritter.append(nom);
      filewritter.append(Comma_delimiter);
      filewritter.append(prenom);
@@ -114,6 +117,7 @@ public class EtudiantsServlet extends HttpServlet {
      filewritter.append(new_line_separator);
      filewritter.flush();
      filewritter.close();
+     
      doGet(request,response);
     }
 
